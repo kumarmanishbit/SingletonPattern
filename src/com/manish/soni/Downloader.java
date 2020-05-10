@@ -1,9 +1,20 @@
 package com.manish.soni;
 
+/**
+ * 
+ * @author kumam8
+ *
+ */
 public class Downloader {
 
 	private static Downloader instance = null;
 
+	/*
+	 * 
+	 * Note :- using reflection can make this public. Constructor constructor =
+	 * singleton.getClass().getDeclaredConstructor(new Class[0]);
+	 * constructor.setAccessible(true);
+	 */
 	private Downloader() {
 
 	}
@@ -29,6 +40,16 @@ public class Downloader {
 		return instance;
 
 	}
+
+	/**
+	 * 
+	 * 
+	 * @return Here, singleton and singleton2 are two different instances having two
+	 *         different values as their field variables. This violates the
+	 *         singleton property. The solution is that we have to implement the
+	 *         readResolve method, which is called when preparing the deserialized
+	 *         object before returning it to the caller.
+	 */
 
 	protected Object readResolve() {
 		return instance;
